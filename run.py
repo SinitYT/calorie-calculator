@@ -25,44 +25,8 @@ def dataCollection():
     data.append(weight_loss)
     return data
 
-
-
-
-def female_calories_cal(data):
-    age = data[1]
-    weight = data[2]
-    height = data[3]
-    activity = data[4]
-    weight_loss = data[5]
-
-    if data[0] == 'female' or 'f':
-        rmr= 10 * int(weight)+ 6.25 * int(height) - 5 * int(age) - 161
-        adl = 0
-        if activity == 'sedentary':
-            adl = rmr * 1.2
-        elif activity == 'light':
-            adl = rmr * 1.375
-        elif activity == 'moderate':
-            adl = rmr * 1.55
-        elif activity == 'active':
-            adl = rmr * 1.725
-        else:
-            adl = rmr * 1.9
-        tef = ( adl) * 0.1
-    else:
-        print("enter correct gender")
-        
-
-   
-    tee = tef + adl 
-    return tee
-
-
-
-
-
-
-def male_calories_cal(data):
+def calories_cal(data):
+    print(f"Calculating your estimated daily calorie needs to maintain your current weight as a {data[0]}")
     age = data[1]
     weight = data[2]
     height = data[3]
@@ -71,20 +35,24 @@ def male_calories_cal(data):
 
     if data[0] == 'male' or 'm':
         rmr= 10 * int(weight)+ 6.25 * int(height) - 5 * int(age) + 5
-        adl = 0
-        if activity == 'sedentary':
-            adl = rmr * 1.2
-        elif activity == 'light':
-            adl = rmr * 1.375
-        elif activity == 'moderate':
-            adl = rmr * 1.55
-        elif activity == 'active':
-            adl = rmr * 1.725
-        else:
-            adl = rmr * 1.9
-        tef = ( adl) * 0.1
-    else:
-        print("enter correct gender")
+    elif data[0] == 'female' or 'f':
+        rmr= 10 * int(weight)+ 6.25 * int(height) - 5 * int(age) - 161
+    
+
+    
+    if activity == 'sedentary':
+        adl = rmr * 1.2
+    elif activity == 'light':
+        adl = rmr * 1.375
+    elif activity == 'moderate':
+        adl = rmr * 1.55
+    elif activity == 'active':
+        adl = rmr * 1.725
+    elif activity == 'very active':
+        adl = rmr * 1.9
+
+    tef = ( adl) * 0.1
+    
         
 
    
@@ -95,5 +63,4 @@ def male_calories_cal(data):
 
 
 data = dataCollection()
-female_calories_cal(data)
-male_calories_cal(data)
+calories_cal(data)
