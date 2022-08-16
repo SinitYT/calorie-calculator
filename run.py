@@ -11,11 +11,27 @@ def getInput(prompt="",cast = None, condition= None, errorMessage=None):
 def dataCollection():
 
     data = []
-    sex = getInput(prompt="Enter your gender(write:male or female):\n")
     age = getInput(prompt="Enter your age:\n", cast=int,condition=lambda x: x > 0)
+    done = False 
+    while not done:
+        print("""
+        (1)Male
+        (2)Female
+        """)
+        sex = getInput(prompt="Enter your gender:\n",condition=lambda x: x == 'male' or 'female', errorMessage="Type '1' for male or '2' for female")
+
+        print("""
+        (1) Sedentary
+        (2) Light
+        (3) Moderate
+        (4) Active
+        (5) Very Active
+        
+        """)
+        activity = getInput(prompt="Choose your activity level:\n")
+        break
     weight = getInput(prompt="Enter your weight in kgs:\n",cast=float,condition=lambda x: x > 0,errorMessage="That's not a valid weight")
     height = getInput(prompt="Enter your height in cms:\n", cast=float, condition=lambda x: x > 100,errorMessage="That's not a valid height")
-    activity = getInput(prompt="How active are you? Type in either sedentary,light,moderate,active,very active:\n")
     
     data.append(sex)
     data.append(age)
@@ -40,15 +56,15 @@ def calories_cal(data):
     
 
     
-    if activity == 'sedentary':
+    if activity == '1':
         adl = rmr * 1.2
-    elif activity == 'light':
+    elif activity == '2':
         adl = rmr * 1.375
-    elif activity == 'moderate':
+    elif activity == '3':
         adl = rmr * 1.55
-    elif activity == 'active':
+    elif activity == '4':
         adl = rmr * 1.725
-    elif activity == 'very active':
+    elif activity == '5':
         adl = rmr * 1.9
 
     tef = ( adl) * 0.1
@@ -61,6 +77,7 @@ def calories_cal(data):
     return tee
 
 '''Give options to user wether they want to lose weight, gain weight or how long i will take them to reach their goal'''
+
 def choices():
     done = False
     while not done:
@@ -69,9 +86,13 @@ def choices():
         (2)Gain Weight
         (3)How long will it take me to lose weight
         """)
+        
+
         choice = input("Choose an option: \n")
         data = dataCollection()
         current_cal_intake=calories_cal(data) 
+        
+        
         if choice == '1' :
             loss_goal=int(input("Enter how many kgs you would like to lose?\n"))
 
@@ -88,11 +109,19 @@ def choices():
             new_cal_intake = round(current_cal_intake + 1000)
             days_it_takes = round((gain_goal*7)/0.9 )
             user_answer = print(f"You need to consume {new_cal_intake}kcal to gain {gain_goal} kgs and it will take you {days_it_takes}days.\n")
-            
-
+        else:
+            user_anwer = print("Please choose an option.")
+        return user_answer
+        break
         
-        print(user_answer)
-print(choices())
+        
+        
+
+print("Welcome to Calorie Calculator ")
+print("Whether you want to gain or lose or maintain your weight, the calculator will help you to figure out the numbers\n")
+
+choices()
+
 
 
 
