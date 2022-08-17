@@ -52,6 +52,15 @@ I have tested the program using the following:
 * Passed it through pep8 validator and confirmed that no major problems were present
 * Tested it on my terminal
 
+## Deployment
+This project was deployed using Code Institute's mock terminal for Heroku.
+* Create a new Heroku app
+* When you create the app, you will need to add two buildpacks from the Settings tab. The ordering is as follows:
+
+ 1. heroku/python
+ 2. heroku/nodejs
+ 3. You must then create a Config Var called PORT. Set this to 8000
+
 
 
 

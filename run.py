@@ -82,7 +82,7 @@ def calories_cal(data):
     3. Thermogenic effect of food (tef)
     """
 
-    print(f"Calculating your estimated daily calorie needs to maintain your current weight...\n")
+    print(f"Calculating your estimated daily calorie needs to maintain your current weight..\n")
 
     age = data[1]
     weight = data[2]
